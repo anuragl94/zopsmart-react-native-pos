@@ -19,7 +19,7 @@ export default class CustomButton extends Component {
       <Touchable onPress={onPress}>
         <View style={[buttonStyles, BUTTON_STYLES._BASE]}>
           <Text style={[textStyles, TEXT_STYLES._BASE]}>
-            {text.toUpperCase()}
+            {typeof text === 'string' ? text.toUpperCase() : ''}
           </Text>
         </View>
       </Touchable>

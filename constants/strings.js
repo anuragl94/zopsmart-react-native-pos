@@ -1,7 +1,7 @@
 const STRINGS = {
-  'HOME.HEADING': 'ZopSmart POS',
-  'HOME.SUBHEADING': 'Welcome!',
-  'HOME.CONTINUE_BUTTON': 'Continue'
+  'WELCOME.HEADING': 'ZopSmart POS',
+  'WELCOME.SUBHEADING': 'Welcome!',
+  'WELCOME.CONTINUE_BUTTON': 'Continue'
 }
 
 export default STRINGS
