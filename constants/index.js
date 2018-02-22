@@ -2,6 +2,7 @@ import STRINGS from './strings'
 
 const CONSTANTS = {
   COLOURS: {
+    BORDER: '#cfd8dc',
     PRIMARY: '#20c05c',
     PRIMARY_INVERTED: '#ffffff',
     MUTED: '#80959d',
@@ -23,8 +24,8 @@ const CONSTANTS = {
     XS: 4,
     SM: 8,
     MD: 12,
-    LG: 16,
-    XL: 20
+    LG: 20,
+    XL: 40
   },
   MARGIN: {
     XS: 4,
@@ -37,8 +38,8 @@ const CONSTANTS = {
     REGULAR: 16,
     SMALL: 14,
     H1: 28,
-    H2: 24,
-    H3: 18
+    H2: 20,
+    H3: 16
   },
   FONT_WEIGHTS: {
     THIN: '100',
