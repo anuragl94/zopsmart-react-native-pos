@@ -255,30 +255,18 @@ const testItems = [
 export default class Catalogue extends Component {
   render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Products</Text>
-        <View style={styles.list}>
-          <ProductList items={testItems} />
-        </View>
+      <View>
+        <ProductList items={testItems} />
       </View>
     )
   }
 }
 
+Catalogue.navigationOptions = {
+  title: 'Catalogue'
+}
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  title: {
-    padding: CONSTANTS.PADDING.LG,
-    fontSize: CONSTANTS.FONT_SIZES.H2,
-    fontWeight: CONSTANTS.FONT_WEIGHTS.REGULAR,
-    backgroundColor: CONSTANTS.COLOURS.PRIMARY,
-    color: CONSTANTS.COLOURS.PRIMARY_INVERTED
-  },
-  list: {
-    flex: 1
-  },
   listItem: {
     padding: CONSTANTS.PADDING.SM,
     height: 70,

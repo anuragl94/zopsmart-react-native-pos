@@ -5,13 +5,16 @@ import CONSTANTS, { STRINGS } from '../../constants'
 
 export default class Welcome extends Component {
   render () {
+    const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{STRINGS['WELCOME.HEADING']}</Text>
           <Text>{STRINGS['WELCOME.SUBHEADING']}</Text>
         </View>
-        <Button style={[ BUTTON_STYLES.PRIMARY ]} onPress={() => {}}>
+        <Button style={[ BUTTON_STYLES.PRIMARY ]} onPress={() => {
+          navigate('catalogue')
+        }}>
           {STRINGS['WELCOME.CONTINUE_BUTTON']}
         </Button>
       </View>
