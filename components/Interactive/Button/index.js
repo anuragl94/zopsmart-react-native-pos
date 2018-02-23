@@ -7,7 +7,7 @@ import CONSTANTS from '../../../constants'
 
 export default class CustomButton extends Component {
   render () {
-    const { onPress, children: text, style } = this.props
+    const { onPress, children: text, style, disabled } = this.props
     const buttonStyles = (style || []).map(style => BUTTON_STYLES[style]).reduce((style, iter) => (
       Object.assign(style, iter)
     ), {})
@@ -15,10 +15,12 @@ export default class CustomButton extends Component {
       Object.assign(style, iter)
     ), {})
     const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity
+    const variableButtonStyles = [disabled ? BUTTON_STYLES.DISABLED : {}]
+    const variableTextStyles = [disabled ? TEXT_STYLES.DISABLED : {}]
     return (
-      <Touchable onPress={onPress}>
-        <View style={[buttonStyles, BUTTON_STYLES._BASE]}>
-          <Text style={[textStyles, TEXT_STYLES._BASE]}>
+      <Touchable onPress={onPress} disabled={disabled}>
+        <View style={[buttonStyles, BUTTON_STYLES._BASE, ...variableButtonStyles]}>
+          <Text style={[textStyles, TEXT_STYLES._BASE, ...variableTextStyles]}>
             {typeof text === 'string' ? text.toUpperCase() : ''}
           </Text>
         </View>
@@ -39,7 +41,7 @@ const BUTTON_STYLES = Platform.select({
   ios: {},
   android: {
     _BASE: {
-      elevation: CONSTANTS.ELEVATIONS.LEVEL2,
+      elevation: CONSTANTS.ELEVATIONS.LEVEL1,
       borderRadius: CONSTANTS.BORDERS.ROUNDED_RADIUS
     },
     'PRIMARY': {
@@ -50,6 +52,11 @@ const BUTTON_STYLES = Platform.select({
     },
     'DANGER': {
       backgroundColor: CONSTANTS.COLOURS.DANGER
+    },
+    'DISABLED': {
+      opacity: 0.5,
+      backgroundColor: CONSTANTS.COLOURS.MUTED_LIGHT,
+      elevation: CONSTANTS.ELEVATIONS.FLAT
     }
   }
 })
@@ -70,6 +77,10 @@ const TEXT_STYLES = Platform.select({
     },
     'DANGER': {
       color: CONSTANTS.COLOURS.DANGER_INVERTED
+    },
+    'DISABLED': {
+      opacity: 0.5,
+      color: CONSTANTS.COLOURS.MUTED_LIGHT_INVERTED
     }
   }
 })
