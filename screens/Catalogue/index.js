@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, FlatList, Platform } from 'react-native'
+import { StyleSheet, Text, Image, View, FlatList, Platform, ActivityIndicator } from 'react-native'
 import CONSTANTS from '../../constants'
+import { getProducts } from '../../lib/model/product'
 
 const Product = Platform.select({
   ios: null,
@@ -10,6 +11,14 @@ const Product = Platform.select({
     categories = []
   }) => (
     <View style={styles.listItem}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={images ? {
+            uri: images[0]
+          } : require('./image-placeholder.png')}
+        />
+      </View>
       <Text>
         {name}
       </Text>
@@ -33,233 +42,48 @@ class ProductList extends Component {
   }
 }
 
-const testItems = [
-  {
-    'id': 3531,
-    'name': 'Collector',
-    'images': [
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/daniel-cheung-129839-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/luiz-hanfilaque-342635-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/jack-hamilton-320934-20180101-063253.jpg'
-    ],
-    'categories': [
-      {
-        'id': 302,
-        'name': 'Resources',
-        'slug': 'resources',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 2,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 1998,
-    'name': 'Startup Simulator',
-    'images': '',
-    'categories': [
-      {
-        'id': 305,
-        'name': 'Simulation',
-        'slug': 'simulation',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 1997,
-    'name': 'The Elementals',
-    'images': null,
-    'categories': [
-      {
-        'id': 304,
-        'name': 'RPG',
-        'slug': 'rpg',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 1996,
-    'name': 'Golden runner',
-    'images': null,
-    'categories': [
-      {
-        'id': 303,
-        'name': 'Platformer',
-        'slug': 'platformer',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 13531,
-    'name': 'Collector',
-    'images': [
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/daniel-cheung-129839-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/luiz-hanfilaque-342635-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/jack-hamilton-320934-20180101-063253.jpg'
-    ],
-    'categories': [
-      {
-        'id': 302,
-        'name': 'Resources',
-        'slug': 'resources',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 2,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 11998,
-    'name': 'Startup Simulator',
-    'images': '',
-    'categories': [
-      {
-        'id': 305,
-        'name': 'Simulation',
-        'slug': 'simulation',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 19197,
-    'name': 'The Elementals',
-    'images': null,
-    'categories': [
-      {
-        'id': 304,
-        'name': 'RPG',
-        'slug': 'rpg',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 19296,
-    'name': 'Golden runner',
-    'images': null,
-    'categories': [
-      {
-        'id': 303,
-        'name': 'Platformer',
-        'slug': 'platformer',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 324531,
-    'name': 'Collector',
-    'images': [
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/daniel-cheung-129839-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/luiz-hanfilaque-342635-20180101-063252.jpg',
-      'https://s3.ap-south-1.amazonaws.com/zopnow-uploads/jack-hamilton-320934-20180101-063253.jpg'
-    ],
-    'categories': [
-      {
-        'id': 302,
-        'name': 'Resources',
-        'slug': 'resources',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 2,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 192498,
-    'name': 'Startup Simulator',
-    'images': '',
-    'categories': [
-      {
-        'id': 305,
-        'name': 'Simulation',
-        'slug': 'simulation',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 124997,
-    'name': 'The Elementals',
-    'images': null,
-    'categories': [
-      {
-        'id': 304,
-        'name': 'RPG',
-        'slug': 'rpg',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  },
-  {
-    'id': 241996,
-    'name': 'Golden runner',
-    'images': null,
-    'categories': [
-      {
-        'id': 303,
-        'name': 'Platformer',
-        'slug': 'platformer',
-        'description': null,
-        'status': 'ENABLED',
-        'image': null,
-        'productsCount': 1,
-        'parentCategory': null
-      }
-    ]
-  }
-]
-
 export default class Catalogue extends Component {
-  render () {
-    return (
-      <View>
-        <ProductList items={testItems} />
-      </View>
-    )
+  constructor (props) {
+    super(props)
+    this.state = {
+      products: null,
+      dataState: this.dataStates.initial
+    }
+    this.getProducts = this.getProducts.bind(this)
   }
+  getProducts () {
+    this.setState({ dataState: this.dataStates.loading })
+    getProducts().then(products => {
+      this.setState({
+        products,
+        dataState: this.dataStates.loaded
+      })
+    })
+  }
+  componentDidMount () {
+    this.getProducts()
+  }
+  render () {
+    switch (this.state.dataState) {
+      case this.dataStates.loading: return (
+        <View style={styles.loader}>
+          <ActivityIndicator size='large' color={CONSTANTS.COLOURS.PRIMARY} />
+        </View>
+      )
+      case this.dataStates.loaded: return (
+        <View>
+          <ProductList items={this.state.products} />
+        </View>
+      )
+      default: return null
+    }
+  }
+}
+
+Catalogue.prototype.dataStates = {
+  initial: 0,
+  loading: 1,
+  loaded: 2
 }
 
 Catalogue.navigationOptions = {
@@ -271,10 +95,25 @@ const styles = StyleSheet.create({
     padding: CONSTANTS.PADDING.SM,
     height: 70,
     paddingLeft: CONSTANTS.PADDING.LG,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
+    flex: 1,
+    flexDirection: 'row'
+  },
+  imageContainer: {
+    width: 54,
+    alignItems: 'flex-start',
+    paddingTop: 5
+  },
+  image: {
+    borderRadius: CONSTANTS.BORDERS.ROUNDED_RADIUS,
+    height: 70 - 10 - (2 * CONSTANTS.PADDING.SM),
+    width: 70 - 10 - (2 * CONSTANTS.PADDING.SM)
   },
   separator: {
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: CONSTANTS.COLOURS.BORDER
+  },
+  loader: {
+    margin: 70
   }
 })
